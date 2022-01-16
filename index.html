@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Assets/style.css">
+    <link rel="stylesheet" href="./Assets/css/reset.css">
+    <link rel="stylesheet" href="./Assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header class="d-f jc-sb">
         <h3>Correct: <span id="score">0</span></h3>
-        <div id="time"></div>
+        <h1>Quiz Game</h1>
+        <h3>Seconds: <span id="time"></span></h3>
     </header>
     <main>
        <div class="bd mn ta-c">
-           <h2 id="question">Title</h2>
-           
+           <h2 id="question">Are you ready?</h2>
+           <div><ol id="highScore"></ol></div>
            <div id="answer"></div>
            <button id="start-btn">Start</button>
        </div> 

@@ -4,6 +4,7 @@ const questionsD = document.querySelector("#question");
 const answersD = document.querySelector("#answer");
 const scoreD = document.querySelector("#score");
 const timerD = document.querySelector("#time");
+const highScoreL = document.querySelector("#highScore")
 const questions = [
     {
         question: "this is a question",
@@ -15,13 +16,47 @@ const questions = [
         options: ["4", "3", "2", "1"],
         answer: "3",
     },
-
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
+    {
+        question: "this is another question", 
+        options: ["4", "3", "2", "1"],
+        answer: "3",
+    },
 ];
 
 
 let qCycle = 0;
 
-let score = localStorage.getItem("score");
+let score = 0
 let counter = 120;
 //functions
 //starting the test
@@ -61,12 +96,8 @@ function questionToggle() {
     if(clickedOption === questions[qCycle].answer) {
         score++;
         scoreD.textContent = score;
-        localStorage.setItem("score", score);
-        localStorage.setItem("time", counter);
     } else {
         counter -= 10;
-        localStorage.setItem("score", score);
-        localStorage.setItem("time", counter);
     }
     
     qCycle++;
@@ -84,9 +115,31 @@ function endGame() {
     questionsD.innerHTML = "High Scores";
     //removes option buttons
     answersD.remove();
+    //create the users score
+    let endScore = score*counter;
+    //get the users initials
+    let initial = prompt("what are your initials?");
+    
+    const highscores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+    let userScore =  {
+        intials: initial,
+        score: endScore,
+    };
+    highscores.push(userScore);
 
-    localStorage.removeItem("time");
-    localStorage.removeItem("score");
+    window.localStorage.setItem("highScores", JSON.stringify(highscores));
+
+    highscores.sort(function (a, b) {
+        return b.score-a.score;
+    });
+
+    highscores.forEach((score) => {
+        const scoreList = document.createElement("li");
+        scoreList.innerHTML += `${score.intials}: ${score.score}`;
+        highScoreL.appendChild(scoreList);
+
+    });
+    
 }
 
 function startTimer() {
