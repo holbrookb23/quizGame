@@ -1,0 +1,25 @@
+
+
+
+.bd {
+    border: .1rem solid black;
+}
+
+.d-f {
+    display: flex;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.mn {
+    margin-left: 30rem;
+    margin-right: 30rem;
+    margin-top: 2rem;
+}
+
+.ta-c {
+    text-align: center;
+}
+
