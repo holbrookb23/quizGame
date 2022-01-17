@@ -40,7 +40,7 @@ const questions = [
         answer: "25-35 Days",
     },
     {
-        question: "what is the closest planet to Earth?", 
+        question: "what is the closest planet to Earth? (for the longest amount of time)", 
         options: ["Venus", "Mercury", "Mars", "Saturn"],
         answer: "Mercury",
     },
