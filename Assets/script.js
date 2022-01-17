@@ -4,59 +4,64 @@ const questionsD = document.querySelector("#question");
 const answersD = document.querySelector("#answer");
 const scoreD = document.querySelector("#score");
 const timerD = document.querySelector("#time");
-const highScoreL = document.querySelector("#highScore")
+const highScoreL = document.querySelector("#highScore");
+const mainD = document.querySelector("#mainD")
+const mainS = document.querySelector("#mainS")
 const questions = [
     {
-        question: "this is a question",
-        options: ["1", "2", "3", "4"],
-        answer: "2",
+        question: "What is the name of our Galaxy?",
+        options: ["Andromeda", "Milky Way", "Gasileo", "Way Too Milky"],
+        answer: "Milky Way",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "What is the hottest planet in our solar system?", 
+        options: ["Mercury", "Jupitar", "Mars", "Venus"],
+        answer: "Venus",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "How old is our solar system?", 
+        options: ["2.7 Billion Years", "1.3 Billion years", "4.5 Billion Years", "2.6 Trillion Years"],
+        answer: "4.5 Billion Years",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "What is the most abundant element in the universe?", 
+        options: ["Oxygen", "Phosphorus", "Hydrogen", "Nitrogen"],
+        answer: "Hydrogen",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "About how far is one light-year?", 
+        options: ["6 Trillion Miles", "8 Quadrillion Miles", " 3 Billion Miles", "The walk to my alarm clock"],
+        answer: "6 Trillion Miles",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "How long does it take the Sun to rotate?", 
+        options: ["4-5 Months", "25-35 Days", "46-67 Days" , "7-8 Months"],
+        answer: "25-35 Days",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "what is the closest planet to Earth?", 
+        options: ["Venus", "Mercury", "Mars", "Saturn"],
+        answer: "Mercury",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
-        answer: "3",
+        question: "What is the radius of the Earth?", 
+        options: ["3958.8 Miles", "4384.6 Miles", "50,126 Miles", "2954.7 Miles"],
+        answer: "3958.8 Miles",
     },
     {
-        question: "this is another question", 
-        options: ["4", "3", "2", "1"],
+        question: "What is the biggest star in our galaxy?", 
+        options: ["The Sun", "UY Scuti", "RW Cephei", "KY Cygni"],
+        answer: "UY Scuti",
+    },
+    {
+        question: "How many planets is the Earth from the Sun?", 
+        options: ["4", "6", "5", "3"],
         answer: "3",
     },
 ];
 
-
 let qCycle = 0;
-
-let score = 0
+let score = 0;
 let counter = 120;
 //functions
 //starting the test
@@ -68,6 +73,7 @@ function startGame() {
     questionsD.textContent = "";
 
     
+     
     questionsD.innerHTML = questions[qCycle].question;
     
     //clear out previous options
@@ -76,7 +82,6 @@ function startGame() {
     questions[qCycle].options.forEach((option) => {
         //create element button
         const answerBtn = document.createElement("button");
-        answerBtn.setAttribute("style", "display: flex; flex-direction: column;");
         answerBtn.textContent = option;
         //add value attribute (value and text)
         answerBtn.setAttribute("value", option);
@@ -84,10 +89,7 @@ function startGame() {
         answerBtn.onclick = questionToggle;
         //append button to the answers div
         answersD.appendChild(answerBtn);
-
-        
-      });
-      
+    });
 }
 
 function questionToggle() {
@@ -96,17 +98,18 @@ function questionToggle() {
     if(clickedOption === questions[qCycle].answer) {
         score++;
         scoreD.textContent = score;
-    } else {
+    } else if(counter >= 10) {
         counter -= 10;
+    } else {
+        createModal();
     }
+
+    qCycle++
     
-    qCycle++;
-    
-    if(qCycle < questions.length) {
+    if(qCycle < questions.length && counter > 0) {
         startGame();
     }
     
-      
 } 
 
 function endGame() {
@@ -119,7 +122,7 @@ function endGame() {
     let endScore = score*counter;
     //get the users initials
     let initial = prompt("what are your initials?");
-    
+
     const highscores = JSON.parse(window.localStorage.getItem("highScores")) || [];
     let userScore =  {
         intials: initial,
@@ -135,11 +138,35 @@ function endGame() {
 
     highscores.forEach((score) => {
         const scoreList = document.createElement("li");
+        scoreList.setAttribute("style", "padding-top: .5rem;");
         scoreList.innerHTML += `${score.intials}: ${score.score}`;
         highScoreL.appendChild(scoreList);
 
     });
+
+    const newG = document.createElement("button");
+    newG.textContent = "Play Again?";
+    newG.onclick = resetGame;
+    mainS.appendChild(newG)
     
+}
+
+function createModal() {
+    const modal = document.createElement("div");
+    modal.setAttribute("style", "z-index: 2; position: fixed; padding: 2rem; margin: 5rem; border: black solid .1rem; background-color: white;");
+    const par = document.createElement("p");
+    par.textContent = "Oh no, you didnt make it in time.";
+    par.setAttribute("style", "padding: 1rem;")
+    modal.appendChild(par);
+    const resetBtn = document.createElement("button");
+    resetBtn.textContent = "Play Again?";
+    resetBtn.onclick = resetGame;
+    modal.appendChild(resetBtn);
+    mainD.appendChild(modal);
+}
+
+function resetGame() {
+    location.reload();
 }
 
 function startTimer() {
@@ -153,12 +180,14 @@ function startTimer() {
             // Clears interval and stops timer
             clearInterval(timer);
             endGame();
+            return;
         }
         // Tests if time has run out
         if (counter === 0) {
-          // Clears interval
-          clearInterval(timer);
-          endGame();
+            // Clears interval
+            clearInterval(timer);
+            createModal();
+            return;
         }
     }, 1000);
 }
