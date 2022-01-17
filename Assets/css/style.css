@@ -1,3 +1,4 @@
+/* styles the buttons in the game */
 button {
     border: none;
     padding: 1rem 5rem 1rem 5rem;
@@ -24,13 +25,7 @@ button:active {
 }
 
 
-/*  */
-.ai-c {
-    align-items: center;
-}
-.bd {
-    border: .1rem solid black;
-}
+/* colors */
 
 .bgc-b {
     background-color: rgb(175, 178, 233);
@@ -44,6 +39,16 @@ button:active {
 .bs {
     box-shadow: 10px 5px 5px rgb(207, 205, 205);
 }
+
+/* classes */
+.ai-c {
+    align-items: center;
+}
+
+.bd {
+    border: .1rem solid black;
+}
+
 .d-f {
     display: flex;
 }
@@ -59,6 +64,7 @@ button:active {
 .jc-c {
     justify-content: center;
 }
+
 .jc-sb {
     justify-content: space-between;
 }
@@ -66,6 +72,7 @@ button:active {
 .mn-2 {
     margin-bottom: 3rem;
 }
+
 .pd {
     padding-top: 3rem;
 }
@@ -73,6 +80,7 @@ button:active {
 .pd-2 {
     padding: 2rem;
 }
+
 .ta-c {
     text-align: center;
 }
@@ -85,6 +93,7 @@ button:active {
     z-index: 1;
 }
 
+/* media querie */
 @media (max-width: 768px) {
     .mn-sm {
         margin: 2rem;

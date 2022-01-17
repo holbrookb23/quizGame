@@ -10,19 +10,30 @@
 </head>
 <body class="bgc-b vh-100">
     <header class="d-f jc-sb pd-2 pd-sm ta-c">
+        <!-- score keeping section -->
         <h3>Correct: <span id="score">0</span></h3>
+        <!-- title -->
         <h1>Astronomy Quiz</h1>
+        <!-- time counter -->
         <h3>Seconds: <span id="time"></span></h3>
     </header>
     <main>
+        <!-- main game div -->
        <div class="ai-c bd bgc-w bs d-f fd-c jc-c mn-sm mn-md z" id="mainD">
+           <!-- quiz questions -->
            <h2 class="d-f pd" id="question">Are you ready?</h2>
-           <div class="d-f"><ol id="highScore"></ol></div>
+           <!-- high score display -->
+           <div class="d-f pd"><ol id="highScore"></ol></div>
+           <!-- answer options for questions -->
            <div class="d-f fd-c mn-2" id="answer"></div>
+           <!-- button to start the game -->
            <button class= "d-f mn-2" id="start-btn">Start</button>
        </div> 
+       <!-- section of how to play -->
        <section class="pd-2 ta-c" id="mainS">
+           <!-- title -->
            <h2>How to play</h2>
+           <!-- game/rule description -->
            <p class="pd-2 pd-md">For this game you have 2 minutes to answer all 10 questions. If you answer a question wrong 10 seconds will be deducted from your time.
                 Your end score will be determined by how many questions you got correct multiplied by the amount of time left on the clock. Goodluck!
             
