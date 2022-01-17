@@ -10,6 +10,7 @@ link
 
 [link](https://holbrookb23.github.io/quizGame/)
 
-
 screenshot
 ----------
+
+![img](./Assets/img/quizGame.png)
